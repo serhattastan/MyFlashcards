@@ -11,6 +11,11 @@ import com.cloffygames.myflashcards.databinding.FragmentHomeBinding
 import com.cloffygames.myflashcards.ui.adapter.CardGroupAdapter
 import com.cloffygames.myflashcards.ui.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import android.app.AlertDialog
+import android.widget.Button
+import android.widget.EditText
+import com.cloffygames.myflashcards.R
+import com.cloffygames.myflashcards.data.model.CardGroup
 
 @AndroidEntryPoint // Bu anotasyon, Dagger Hilt'in bu sınıfa bağımlılık enjeksiyonu yapacağını belirtir
 class HomeFragment : Fragment() {
@@ -24,7 +29,7 @@ class HomeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // FragmentHomeBinding'i inflate eder ve _binding değişkenine atar
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
@@ -40,6 +45,33 @@ class HomeFragment : Fragment() {
             binding.recyclerView.layoutManager = LinearLayoutManager(context)
             binding.recyclerView.adapter = adapter
         }
+
+        // addCardGroupButton'a tıklama olayını dinler
+        binding.addCardGroupButton.setOnClickListener {
+            showAddCardGroupDialog()
+        }
+    }
+
+    // Yeni bir kart grubu eklemek için bir dialog gösterir
+    private fun showAddCardGroupDialog() {
+        val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_add_card_group, null)
+        val groupNameEditText = dialogView.findViewById<EditText>(R.id.groupNameEditText)
+        val addButton = dialogView.findViewById<Button>(R.id.addButton)
+
+        val dialog = AlertDialog.Builder(requireContext())
+            .setView(dialogView)
+            .create()
+
+        addButton.setOnClickListener {
+            val groupName = groupNameEditText.text.toString()
+            if (groupName.isNotEmpty()) {
+                // ViewModel'e yeni bir kart grubu ekler
+                viewModel.addCardGroup(CardGroup(groupName = groupName))
+                dialog.dismiss()
+            }
+        }
+
+        dialog.show()
     }
 
     override fun onDestroyView() {

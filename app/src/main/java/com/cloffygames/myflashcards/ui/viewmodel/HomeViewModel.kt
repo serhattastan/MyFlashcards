@@ -42,6 +42,14 @@ class HomeViewModel @Inject constructor(
             _cardGroupsWithCards.value = cardGroupsWithCards
         }
     }
+
+    // Yeni bir kart grubu ekler ve güncellenmiş kart gruplarını çeker
+    fun addCardGroup(cardGroup: CardGroup) {
+        viewModelScope.launch {
+            cardGroupRepository.insertCardGroup(cardGroup)
+            fetchCardGroupsWithCards()
+        }
+    }
 }
 
 // CardGroupWithCards, bir CardGroup ve onun içindeki kartların listesini temsil eder
