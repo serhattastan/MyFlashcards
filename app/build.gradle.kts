@@ -4,7 +4,8 @@ plugins {
     alias(libs.plugins.google.gms.google.services)
     id("androidx.navigation.safeargs.kotlin") // Navigation Safe Args eklentisi
     id("kotlin-kapt") // Kotlin Kapt (Annotation Processing Tool) eklentisi
-    id("com.google.dagger.hilt.android") // Dagger Hilt eklentisi
+    id("com.google.dagger.hilt.android")
+    alias(libs.plugins.google.firebase.crashlytics) // Dagger Hilt eklentisi
 }
 
 android {
@@ -52,6 +53,8 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.firebase.auth)
+    implementation(libs.firebase.crashlytics)
+    implementation(libs.firebase.firestore)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
