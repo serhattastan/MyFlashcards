@@ -50,4 +50,7 @@
     <string name="term">Begriff</string>
     <string name="definition">Definition</string>
     <string name="group_name">Gruppenname</string>
+    <string name="exit_confirmation_message">Möchten Sie die App wirklich beenden?</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nein</string>
 </resources>

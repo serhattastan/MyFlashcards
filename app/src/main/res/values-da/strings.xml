@@ -50,4 +50,7 @@
     <string name="term">Term</string>
     <string name="definition">Definition</string>
     <string name="group_name">Gruppens navn</string>
+    <string name="exit_confirmation_message">Vil du virkelig afslutte appen?</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nej</string>
 </resources>

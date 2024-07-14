@@ -50,4 +50,7 @@
     <string name="term">Terim</string>
     <string name="definition">Tanım</string>
     <string name="group_name">Grup Adı</string>
+    <string name="exit_confirmation_message">Uygulamadan çıkmak istediğinize emin misiniz?</string>
+    <string name="yes">Evet</string>
+    <string name="no">Hayır</string>
 </resources>

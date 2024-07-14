@@ -50,4 +50,7 @@
     <string name="term">Terme</string>
     <string name="definition">Définition</string>
     <string name="group_name">Nom du groupe</string>
+    <string name="exit_confirmation_message">Voulez-vous vraiment quitter l\'application?</string>
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
 </resources>

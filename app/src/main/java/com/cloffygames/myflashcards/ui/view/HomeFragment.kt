@@ -5,6 +5,7 @@ import android.speech.tts.TextToSpeech
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -51,6 +52,11 @@ class HomeFragment : Fragment(), TextToSpeech.OnInitListener {
         // addCardGroupButton'a tıklama olayını dinler
         binding.addCardGroupButton.setOnClickListener {
             showAddCardGroupDialog()
+        }
+
+        // Sistem geri tuşu basıldığında davranışı özelleştirir
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            showExitConfirmationDialog()
         }
     }
 
@@ -106,6 +112,21 @@ class HomeFragment : Fragment(), TextToSpeech.OnInitListener {
         }
 
         dialog.show()
+    }
+
+    // Uygulamayı kapatmak için onay isteyen bir dialog gösterir
+    private fun showExitConfirmationDialog() {
+        AlertDialog.Builder(requireContext())
+            .setMessage(R.string.exit_confirmation_message)
+            .setPositiveButton(R.string.yes) { dialog, _ ->
+                requireActivity().finish()
+                dialog.dismiss()
+            }
+            .setNegativeButton(R.string.no) { dialog, _ ->
+                dialog.dismiss()
+            }
+            .create()
+            .show()
     }
 
     // TTS motoru başlatıldığında çağrılır
