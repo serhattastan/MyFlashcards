@@ -10,15 +10,32 @@
         android:id="@+id/welcomeTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:fontFamily="@font/montserrat_alternates_semibold"
-        android:text="Hoşgeldin @Kullanıcıadı"
+        android:text="Hoşgeldin!"
         android:textColor="@color/secondary_color"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.16"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/noCardGroupsTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:fontFamily="@font/montserrat_alternates_medium"
+        android:gravity="center"
+        android:text="Yeni bir kart grubu eklemek için + butonuna tıklayın."
+        android:textColor="@color/secondary_color"
+        android:textSize="16sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/welcomeTextView" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"

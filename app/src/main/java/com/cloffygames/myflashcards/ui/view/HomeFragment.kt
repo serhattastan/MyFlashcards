@@ -46,10 +46,8 @@ class HomeFragment : Fragment(), TextToSpeech.OnInitListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         // TextToSpeech (TTS) motorunu başlatır
         tts = TextToSpeech(context, this)
-
         // addCardGroupButton'a tıklama olayını dinler
         binding.addCardGroupButton.setOnClickListener {
             showAddCardGroupDialog()
@@ -66,16 +64,23 @@ class HomeFragment : Fragment(), TextToSpeech.OnInitListener {
     private fun fetchAndDisplayCardGroups() {
         CoroutineScope(Dispatchers.Main).launch {
             val cardGroupsWithCards = viewModel.fetchCardGroupsWithCards()
-            val adapter = CardGroupAdapter(cardGroupsWithCards, { cardGroup ->
-                // Grup detaylarına gitmek için navigasyon işlemini başlatır
-                val action = HomeFragmentDirections.actionHomeFragmentToGroupDetailFragment(cardGroup.cardGroup.groupId)
-                findNavController().navigate(action)
-            }, { term ->
-                // TTS ile terimi okur
-                tts.speak(term, TextToSpeech.QUEUE_FLUSH, null, null)
-            })
-            binding.recyclerView.layoutManager = LinearLayoutManager(context)
-            binding.recyclerView.adapter = adapter
+            if (cardGroupsWithCards.isEmpty()) {
+                binding.noCardGroupsTextView.visibility = View.VISIBLE
+                binding.recyclerView.visibility = View.GONE
+            } else {
+                binding.noCardGroupsTextView.visibility = View.GONE
+                binding.recyclerView.visibility = View.VISIBLE
+                val adapter = CardGroupAdapter(cardGroupsWithCards, { cardGroup ->
+                    // Grup detaylarına gitmek için navigasyon işlemini başlatır
+                    val action = HomeFragmentDirections.actionHomeFragmentToGroupDetailFragment(cardGroup.cardGroup.groupId)
+                    findNavController().navigate(action)
+                }, { term ->
+                    // TTS ile terimi okur
+                    tts.speak(term, TextToSpeech.QUEUE_FLUSH, null, null)
+                })
+                binding.recyclerView.layoutManager = LinearLayoutManager(context)
+                binding.recyclerView.adapter = adapter
+            }
         }
     }
 
@@ -117,6 +122,7 @@ class HomeFragment : Fragment(), TextToSpeech.OnInitListener {
         }
     }
 
+    // Görünüm yok edilirken çağrılır, TTS motorunu kapatır
     override fun onDestroyView() {
         super.onDestroyView()
         if (this::tts.isInitialized) {
