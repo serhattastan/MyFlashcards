@@ -3,12 +3,12 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="primary_color">#94C5CC</color>
-    <color name="secondary_color">#042A2B</color>
-    <color name="background_color">#F8F8F8</color>
+    <color name="primary_color">#0B3954</color>
+    <color name="secondary_color">#94C5CC</color>
+    <color name="background_color">#03191E</color>
 
+    <color name="secondary_color_system">#0B3954</color>
     <color name="background_color_night">#03191E</color>
-    <color name="secondary_color_system">#94C5CC</color>
 
     <color name="alert_true_color">#85CB33</color>
     <color name="alert_color">#137547</color>

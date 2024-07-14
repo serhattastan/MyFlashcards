@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="96dp"
         android:orientation="vertical"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -22,9 +22,10 @@
             android:id="@+id/signInTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_alternates_medium"
             android:text="@string/sign_in"
             android:textAlignment="center"
-            android:textColor="@color/black"
+            android:textColor="@color/primary_color"
             android:textSize="34sp" />
 
         <EditText
@@ -45,12 +46,16 @@
             android:id="@+id/signInButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/sign_in" />
+            android:backgroundTint="@color/primary_color"
+            android:fontFamily="@font/montserrat_alternates_medium"
+            android:text="@string/sign_in"
+            android:textColor="@color/secondary_color" />
 
         <TextView
             android:id="@+id/goToSignUpTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_alternates"
             android:gravity="center"
             android:paddingTop="16dp"
             android:text="@string/dont_have_account"
@@ -70,7 +75,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="96dp"
         android:orientation="vertical"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -79,9 +84,10 @@
             android:id="@+id/signUpTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_alternates_medium"
             android:text="@string/sign_up"
             android:textAlignment="center"
-            android:textColor="@color/black"
+            android:textColor="@color/primary_color"
             android:textSize="34sp" />
 
         <EditText
@@ -109,12 +115,16 @@
             android:id="@+id/signUpButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/sign_up" />
+            android:backgroundTint="@color/primary_color"
+            android:fontFamily="@font/montserrat_alternates_medium"
+            android:text="@string/sign_up"
+            android:textColor="@color/secondary_color" />
 
         <TextView
             android:id="@+id/goToSignInTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_alternates"
             android:gravity="center"
             android:paddingTop="16dp"
             android:text="@string/already_have_account"
