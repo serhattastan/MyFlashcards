@@ -22,8 +22,7 @@ import com.google.android.gms.common.api.ApiException
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.regex.Pattern
 
-// Bu sınıf, kullanıcı kimlik doğrulama işlemlerini yönetmek için kullanılır ve Hilt tarafından sağlanan bağımlılıkları kullanır.
-@AndroidEntryPoint
+@AndroidEntryPoint // Bu sınıf, kullanıcı kimlik doğrulama işlemlerini yönetmek için kullanılır ve Hilt tarafından sağlanan bağımlılıkları kullanır.
 class AuthFragment : Fragment() {
     // AuthViewModel örneği, Hilt tarafından sağlanır
     private val authViewModel: AuthViewModel by viewModels()
@@ -129,8 +128,14 @@ class AuthFragment : Fragment() {
         binding.loginButtonGoogleSignIn.setOnClickListener {
             signInWithGoogle()
         }
+
+        // Misafir olarak giriş yap butonuna tıklanma işlemi
+        binding.guestButton.setOnClickListener {
+            authViewModel.signInAsGuest()
+        }
     }
 
+    // Email ve şifre doğrulama işlemi
     private fun validateEmailAndPassword(email: String, password: String, isSignIn: Boolean): Boolean {
         var isValid = true
 
@@ -169,6 +174,7 @@ class AuthFragment : Fragment() {
         return isValid
     }
 
+    // Şifrelerin eşleştiğini doğrulama işlemi
     private fun validateConfirmPassword(password: String, confirmPassword: String): Boolean {
         if (password != confirmPassword) {
             binding.editTextTextPassword2.error = getString(R.string.password_mismatch)

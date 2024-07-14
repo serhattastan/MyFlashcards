@@ -5,19 +5,17 @@
     <string name="default_web_client_id">778052437982-pe7eei2d2cg0koi01oapl62vt1rnga8v.apps.googleusercontent.com</string>
 
     <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign Up</string>
     <string name="email_hint">Email</string>
     <string name="password_hint">Password</string>
-    <string name="sign_up">Sign Up</string>
     <string name="confirm_password_hint">Confirm Password</string>
     <string name="dont_have_account">Don\'t have an account? Sign Up</string>
     <string name="already_have_account">Already have an account? Sign In</string>
     <string name="email_required">Email is required</string>
-    <string name="valid_email_required">Enter a valid email</string>
+    <string name="valid_email_required">Valid email is required</string>
     <string name="password_required">Password is required</string>
-    <string name="password_length_error">Password should be at least 6 characters</string>
+    <string name="password_length_error">Password must be at least 6 characters</string>
     <string name="password_mismatch">Passwords do not match</string>
     <string name="google_sign_in_failed">Google sign in failed: %1$s</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="play_sound">asdasd</string>
+    <string name="continue_as_guest">Continue as a Guest</string>
 </resources>

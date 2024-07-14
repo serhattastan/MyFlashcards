@@ -3,83 +3,93 @@ package com.cloffygames.myflashcards.ui.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.cloffygames.myflashcards.data.repository.FirestoreRepository
-import com.cloffygames.myflashcards.data.repository.PreferencesRepository
+import androidx.lifecycle.viewModelScope
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-// AuthViewModel sınıfı HiltViewModel olarak tanımlanmış ve Dagger Hilt tarafından enjekte ediliyor
-@HiltViewModel
-class AuthViewModel @Inject constructor(
-    // FirestoreRepository ve PreferencesRepository, Dagger Hilt tarafından enjekte ediliyor
-    private val repository: FirestoreRepository,
-    private val preferencesRepository: PreferencesRepository
-) : ViewModel() {
+@HiltViewModel // Bu anotasyon, Dagger Hilt'in bu ViewModel'e bağımlılık enjeksiyonu yapmasını sağlar
+class AuthViewModel @Inject constructor() : ViewModel() {
 
-    // MutableLiveData, dışarıya LiveData olarak açılıyor
+    // Kullanıcı oturum durumu için LiveData
     private val _authState = MutableLiveData<AuthState>()
     val authState: LiveData<AuthState> = _authState
 
-    // ViewModel ilk oluşturulduğunda kullanıcı oturumunu kontrol ediyor
+    // FirebaseAuth örneği
+    private val firebaseAuth = FirebaseAuth.getInstance()
+
     init {
-        checkUserSession()
-    }
-
-    // Email ve şifre ile oturum açma fonksiyonu
-    fun signIn(email: String, password: String) {
-        repository.signIn(email, password) { success ->
-            if (success) {
-                preferencesRepository.saveUserSession() // Oturum durumu kaydediliyor
-                _authState.value = AuthState.Authenticated
-            } else {
-                _authState.value = AuthState.Error("Sign in failed")
-            }
-        }
-    }
-
-    // Email ve şifre ile kayıt olma fonksiyonu
-    fun signUp(email: String, password: String) {
-        repository.signUp(email, password) { success ->
-            if (success) {
-                preferencesRepository.saveUserSession() // Oturum durumu kaydediliyor
-                _authState.value = AuthState.Authenticated
-            } else {
-                _authState.value = AuthState.Error("Sign up failed")
-            }
-        }
-    }
-
-    // Google ile oturum açma fonksiyonu
-    fun firebaseAuthWithGoogle(idToken: String) {
-        repository.firebaseAuthWithGoogle(idToken) { success ->
-            if (success) {
-                preferencesRepository.saveUserSession() // Oturum durumu kaydediliyor
-                _authState.value = AuthState.Authenticated
-            } else {
-                _authState.value = AuthState.Error("Authentication Failed.")
-            }
-        }
-    }
-
-    // Oturumu kapatma fonksiyonu
-    fun signOut() {
-        preferencesRepository.clearUserSession() // Oturum durumu temizleniyor
-        _authState.value = AuthState.Unauthenticated
-    }
-
-    // Kullanıcının oturum açma durumunu kontrol eden fonksiyon
-    private fun checkUserSession() {
-        if (preferencesRepository.isUserLoggedIn()) {
+        // Kullanıcının oturum durumunu kontrol et
+        if (firebaseAuth.currentUser != null) {
             _authState.value = AuthState.Authenticated
         } else {
             _authState.value = AuthState.Unauthenticated
         }
     }
+
+    // E-posta ve şifre ile giriş yapma
+    fun signIn(email: String, password: String) {
+        viewModelScope.launch {
+            try {
+                firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        _authState.value = AuthState.Authenticated
+                    } else {
+                        _authState.value = AuthState.Error(task.exception?.message ?: "Unknown error")
+                    }
+                }
+            } catch (e: Exception) {
+                _authState.value = AuthState.Error(e.message ?: "Unknown error")
+            }
+        }
+    }
+
+    // E-posta ve şifre ile kayıt olma
+    fun signUp(email: String, password: String) {
+        viewModelScope.launch {
+            try {
+                firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        _authState.value = AuthState.Authenticated
+                    } else {
+                        _authState.value = AuthState.Error(task.exception?.message ?: "Unknown error")
+                    }
+                }
+            } catch (e: Exception) {
+                _authState.value = AuthState.Error(e.message ?: "Unknown error")
+            }
+        }
+    }
+
+    // Google hesabı ile giriş yapma
+    fun firebaseAuthWithGoogle(idToken: String) {
+        val credential = GoogleAuthProvider.getCredential(idToken, null)
+        firebaseAuth.signInWithCredential(credential).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                _authState.value = AuthState.Authenticated
+            } else {
+                _authState.value = AuthState.Error(task.exception?.message ?: "Unknown error")
+            }
+        }
+    }
+
+    // Misafir olarak giriş yapma
+    fun signInAsGuest() {
+        firebaseAuth.signInAnonymously().addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                _authState.value = AuthState.Authenticated
+            } else {
+                _authState.value = AuthState.Error(task.exception?.message ?: "Unknown error")
+            }
+        }
+    }
 }
 
-// Oturum durumu için sealed class tanımı
+// Kullanıcı oturum durumunu temsil eden sınıf
 sealed class AuthState {
-    object Authenticated : AuthState() // Oturum açılmış durumda
-    object Unauthenticated : AuthState() // Oturum açılmamış durumda
-    data class Error(val message: String) : AuthState() // Hata durumu ve mesajı
+    object Authenticated : AuthState() // Kullanıcı oturum açmış
+    object Unauthenticated : AuthState() // Kullanıcı oturum açmamış
+    data class Error(val message: String) : AuthState() // Hata durumu
 }
