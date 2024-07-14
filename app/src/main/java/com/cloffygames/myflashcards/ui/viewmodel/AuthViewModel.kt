@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.cloffygames.myflashcards.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -37,11 +38,11 @@ class AuthViewModel @Inject constructor() : ViewModel() {
                     if (task.isSuccessful) {
                         _authState.value = AuthState.Authenticated
                     } else {
-                        _authState.value = AuthState.Error(task.exception?.message ?: "Unknown error")
+                        _authState.value = AuthState.Error(task.exception?.message ?: R.string.unknown_error.toString())
                     }
                 }
             } catch (e: Exception) {
-                _authState.value = AuthState.Error(e.message ?: "Unknown error")
+                _authState.value = AuthState.Error(e.message ?: R.string.unknown_error.toString())
             }
         }
     }
@@ -54,11 +55,11 @@ class AuthViewModel @Inject constructor() : ViewModel() {
                     if (task.isSuccessful) {
                         _authState.value = AuthState.Authenticated
                     } else {
-                        _authState.value = AuthState.Error(task.exception?.message ?: "Unknown error")
+                        _authState.value = AuthState.Error(task.exception?.message ?: R.string.unknown_error.toString())
                     }
                 }
             } catch (e: Exception) {
-                _authState.value = AuthState.Error(e.message ?: "Unknown error")
+                _authState.value = AuthState.Error(e.message ?: R.string.unknown_error.toString())
             }
         }
     }
@@ -70,7 +71,7 @@ class AuthViewModel @Inject constructor() : ViewModel() {
             if (task.isSuccessful) {
                 _authState.value = AuthState.Authenticated
             } else {
-                _authState.value = AuthState.Error(task.exception?.message ?: "Unknown error")
+                _authState.value = AuthState.Error(task.exception?.message ?: R.string.unknown_error.toString())
             }
         }
     }
@@ -81,7 +82,7 @@ class AuthViewModel @Inject constructor() : ViewModel() {
             if (task.isSuccessful) {
                 _authState.value = AuthState.Authenticated
             } else {
-                _authState.value = AuthState.Error(task.exception?.message ?: "Unknown error")
+                _authState.value = AuthState.Error(task.exception?.message ?: R.string.unknown_error.toString())
             }
         }
     }

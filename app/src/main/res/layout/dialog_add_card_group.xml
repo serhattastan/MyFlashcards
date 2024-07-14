@@ -11,7 +11,7 @@
         android:id="@+id/groupNameEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Grup Adı" />
+        android:hint="@string/group_name_hint" />
 
     <Button
         android:id="@+id/addButton"
@@ -19,6 +19,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:backgroundTint="@color/secondary_color"
-        android:text="Ekle"
+        android:text="@string/add_button"
         app:cornerRadius="7dp" />
 </LinearLayout>

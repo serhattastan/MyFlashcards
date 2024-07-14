@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">My Flashcards</string>
+
+    <string name="sign_in">Giriş Yap</string>
+    <string name="sign_up">Kayıt Ol</string>
+    <string name="email_hint">E-posta</string>
+    <string name="password_hint">Şifre</string>
+    <string name="confirm_password_hint">Şifreyi Onayla</string>
+    <string name="dont_have_account">Hesabın yok mu? Kayıt Ol</string>
+    <string name="already_have_account">Zaten hesabın var mı? Giriş Yap</string>
+    <string name="email_required">E-posta gerekli</string>
+    <string name="valid_email_required">Geçerli bir e-posta gerekli</string>
+    <string name="password_required">Şifre gerekli</string>
+    <string name="password_length_error">Şifre en az 6 karakter olmalı</string>
+    <string name="password_mismatch">Şifreler eşleşmiyor</string>
+    <string name="google_sign_in_failed">Google ile giriş başarısız: %1$s</string>
+    <string name="continue_as_guest">Misafir olarak devam et</string>
+
+    <!-- Yeni eklenen stringler -->
+    <string name="delete_confirmation_message">Bu grubu ve tüm kartlarını silmek istediğinizden emin misiniz?</string>
+    <string name="delete_confirmation_positive">Evet</string>
+    <string name="delete_confirmation_negative">Hayır</string>
+    <string name="empty_group_message">Grup boş. Lütfen bazı terimler ekleyin.</string>
+    <string name="insufficient_terms_message">Quiz\'e başlamak için grup en az 5 terim içermelidir. Lütfen daha fazla terim ekleyin.</string>
+    <string name="empty_group_positive">Tamam</string>
+    <string name="no_card_groups">Kart grubu yok</string>
+    <string name="language_not_supported">Dil desteklenmiyor</string>
+    <string name="tts_initialization_failed">TextToSpeech başlatma başarısız oldu</string>
+    <string name="tts_initialized_successfully">TextToSpeech başarıyla başlatıldı</string>
+    <string name="question_number">Soru Numarası: %d</string>
+    <string name="correct_number">Doğru Sayısı: %d</string>
+    <string name="wrong_number">Yanlış Sayısı: %d</string>
+    <string name="unknown_error">Bilinmeyen hata</string>
+    <string name="add_card">Kart Ekle</string>
+    <string name="term_hint">Terim</string>
+    <string name="definition_hint">Tanım</string>
+    <string name="add_button">Ekle</string>
+    <string name="group_name_hint">Grup Adı</string>
+    <string name="practice">Pratik</string>
+    <string name="quiz">Sınav</string>
+    <string name="welcome_text">Hoşgeldin!</string>
+    <string name="no_card_groups_message">Yeni bir kart grubu eklemek için + butonuna tıklayın.</string>
+    <string name="quiz_screen">Sınav Ekranı</string>
+    <string name="results">Sonuçlar:</string>
+    <string name="question_count">Soru Sayısı:</string>
+    <string name="correct_count">Doğru Sayısı:</string>
+    <string name="wrong_count">Yanlış Sayısı:</string>
+    <string name="return_to_main">Ana Menüye Dön</string>
+    <string name="term">Terim</string>
+    <string name="definition">Tanım</string>
+    <string name="group_name">Grup Adı</string>
+</resources>

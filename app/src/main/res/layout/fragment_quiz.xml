@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/montserrat_alternates_medium"
-            android:text="Quiz Ekranı"
+            android:text="@string/quiz_screen"
             android:textColor="@color/secondary_color"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -159,7 +159,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_alternates_semibold"
                 android:gravity="center"
-                android:text="Sonuçlar:"
+                android:text="@string/results"
                 android:textColor="@color/secondary_color"
                 android:textSize="20sp" />
 
@@ -169,7 +169,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_alternates_medium"
                 android:gravity="center"
-                android:text="Soru Sayısı:"
+                android:text="@string/question_count"
                 android:textColor="@color/secondary_color"
                 android:textSize="16sp" />
 
@@ -179,7 +179,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_alternates_medium"
                 android:gravity="center"
-                android:text="Doğru Sayısı:"
+                android:text="@string/correct_count"
                 android:textColor="@color/secondary_color"
                 android:textSize="16sp" />
 
@@ -189,7 +189,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_alternates_medium"
                 android:gravity="center"
-                android:text="Yanlış Sayısı:"
+                android:text="@string/wrong_count"
                 android:textColor="@color/secondary_color"
                 android:textSize="16sp" />
 
@@ -199,7 +199,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:backgroundTint="@color/primary_color"
-                android:text="Ana Menüye Dön"
+                android:text="@string/return_to_main"
                 android:textColor="@color/secondary_color" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>

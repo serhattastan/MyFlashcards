@@ -113,12 +113,12 @@ class HomeFragment : Fragment(), TextToSpeech.OnInitListener {
         if (status == TextToSpeech.SUCCESS) {
             val result = tts.setLanguage(Locale.getDefault())
             if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
-                Log.e("TTS", "Language is not supported")
+                Log.e("TTS", getString(R.string.language_not_supported))
             } else {
-                Log.d("TTS", "TextToSpeech initialized successfully")
+                Log.d("TTS", getString(R.string.tts_initialized_successfully))
             }
         } else {
-            Log.e("TTS", "Initialization failed")
+            Log.e("TTS", getString(R.string.tts_initialization_failed))
         }
     }
 

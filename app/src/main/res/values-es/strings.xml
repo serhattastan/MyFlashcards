@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">My Flashcards</string>
+
+    <string name="sign_in">Iniciar sesión</string>
+    <string name="sign_up">Registrarse</string>
+    <string name="email_hint">Correo electrónico</string>
+    <string name="password_hint">Contraseña</string>
+    <string name="confirm_password_hint">Confirmar contraseña</string>
+    <string name="dont_have_account">¿No tienes una cuenta? Regístrate</string>
+    <string name="already_have_account">¿Ya tienes una cuenta? Iniciar sesión</string>
+    <string name="email_required">Correo electrónico es requerido</string>
+    <string name="valid_email_required">Correo electrónico válido es requerido</string>
+    <string name="password_required">Contraseña es requerida</string>
+    <string name="password_length_error">La contraseña debe tener al menos 6 caracteres</string>
+    <string name="password_mismatch">Las contraseñas no coinciden</string>
+    <string name="google_sign_in_failed">Error al iniciar sesión con Google: %1$s</string>
+    <string name="continue_as_guest">Continuar como invitado</string>
+
+    <!-- Nuevas cadenas añadidas -->
+    <string name="delete_confirmation_message">¿Estás seguro de que deseas eliminar este grupo y todas sus tarjetas?</string>
+    <string name="delete_confirmation_positive">Sí</string>
+    <string name="delete_confirmation_negative">No</string>
+    <string name="empty_group_message">El grupo está vacío. Por favor, añade algunos términos.</string>
+    <string name="insufficient_terms_message">El grupo debe contener más de 5 términos para comenzar el cuestionario. Por favor, añade más términos.</string>
+    <string name="empty_group_positive">OK</string>
+    <string name="no_card_groups">No hay grupos de tarjetas disponibles</string>
+    <string name="language_not_supported">Idioma no soportado</string>
+    <string name="tts_initialization_failed">Error al inicializar TextToSpeech</string>
+    <string name="tts_initialized_successfully">TextToSpeech inicializado con éxito</string>
+    <string name="question_number">Número de pregunta: %d</string>
+    <string name="correct_number">Respuestas correctas: %d</string>
+    <string name="wrong_number">Respuestas incorrectas: %d</string>
+    <string name="unknown_error">Error desconocido</string>
+    <string name="add_card">Añadir tarjeta</string>
+    <string name="term_hint">Término</string>
+    <string name="definition_hint">Definición</string>
+    <string name="add_button">Añadir</string>
+    <string name="group_name_hint">Nombre del grupo</string>
+    <string name="practice">Practicar</string>
+    <string name="quiz">Cuestionario</string>
+    <string name="welcome_text">¡Bienvenido!</string>
+    <string name="no_card_groups_message">Haz clic en el botón + para añadir un nuevo grupo de tarjetas.</string>
+    <string name="quiz_screen">Pantalla de cuestionario</string>
+    <string name="results">Resultados:</string>
+    <string name="question_count">Número de preguntas:</string>
+    <string name="correct_count">Número de respuestas correctas:</string>
+    <string name="wrong_count">Número de respuestas incorrectas:</string>
+    <string name="return_to_main">Volver al menú principal</string>
+    <string name="term">Término</string>
+    <string name="definition">Definición</string>
+    <string name="group_name">Nombre del grupo</string>
+</resources>

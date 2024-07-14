@@ -140,8 +140,8 @@ class GroupDetailFragment : Fragment() {
     // Silme onay dialogunu gösterir
     private fun showDeleteConfirmationDialog() {
         AlertDialog.Builder(requireContext())
-            .setMessage("Are you sure you want to delete this group and all its cards?")
-            .setPositiveButton("Yes") { dialog, _ ->
+            .setMessage(getString(R.string.delete_confirmation_message))
+            .setPositiveButton(getString(R.string.delete_confirmation_positive)) { dialog, _ ->
                 CoroutineScope(Dispatchers.Main).launch {
                     viewModel.deleteCardGroup(args.groupId)
                     withContext(Dispatchers.Main) {
@@ -150,7 +150,7 @@ class GroupDetailFragment : Fragment() {
                 }
                 dialog.dismiss()
             }
-            .setNegativeButton("No") { dialog, _ ->
+            .setNegativeButton(getString(R.string.delete_confirmation_negative)) { dialog, _ ->
                 dialog.dismiss()
             }
             .create()
@@ -160,8 +160,8 @@ class GroupDetailFragment : Fragment() {
     // Grup boş olduğunda uyarı dialogunu gösterir
     private fun showEmptyGroupDialog() {
         AlertDialog.Builder(requireContext())
-            .setMessage("The group is empty. Please add some terms.")
-            .setPositiveButton("OK") { dialog, _ ->
+            .setMessage(getString(R.string.empty_group_message))
+            .setPositiveButton(getString(R.string.empty_group_positive)) { dialog, _ ->
                 dialog.dismiss()
             }
             .create()
@@ -171,8 +171,8 @@ class GroupDetailFragment : Fragment() {
     // Grup içindeki terim sayısı yetersiz olduğunda uyarı dialogunu gösterir
     private fun showInsufficientTermsDialog() {
         AlertDialog.Builder(requireContext())
-            .setMessage("The group must contain more than 5 terms to start the quiz. Please add more terms.")
-            .setPositiveButton("OK") { dialog, _ ->
+            .setMessage(getString(R.string.insufficient_terms_message))
+            .setPositiveButton(getString(R.string.empty_group_positive)) { dialog, _ ->
                 dialog.dismiss()
             }
             .create()

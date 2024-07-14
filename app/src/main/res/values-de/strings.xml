@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">My Flashcards</string>
+
+    <string name="sign_in">Anmelden</string>
+    <string name="sign_up">Registrieren</string>
+    <string name="email_hint">E-Mail</string>
+    <string name="password_hint">Passwort</string>
+    <string name="confirm_password_hint">Passwort bestätigen</string>
+    <string name="dont_have_account">Noch keinen Account? Registrieren</string>
+    <string name="already_have_account">Schon einen Account? Anmelden</string>
+    <string name="email_required">E-Mail ist erforderlich</string>
+    <string name="valid_email_required">Gültige E-Mail ist erforderlich</string>
+    <string name="password_required">Passwort ist erforderlich</string>
+    <string name="password_length_error">Passwort muss mindestens 6 Zeichen lang sein</string>
+    <string name="password_mismatch">Passwörter stimmen nicht überein</string>
+    <string name="google_sign_in_failed">Google-Anmeldung fehlgeschlagen: %1$s</string>
+    <string name="continue_as_guest">Als Gast fortfahren</string>
+
+    <!-- Neu hinzugefügte Zeichenfolgen -->
+    <string name="delete_confirmation_message">Sind Sie sicher, dass Sie diese Gruppe und alle ihre Karten löschen möchten?</string>
+    <string name="delete_confirmation_positive">Ja</string>
+    <string name="delete_confirmation_negative">Nein</string>
+    <string name="empty_group_message">Die Gruppe ist leer. Bitte fügen Sie einige Begriffe hinzu.</string>
+    <string name="insufficient_terms_message">Die Gruppe muss mehr als 5 Begriffe enthalten, um das Quiz zu starten. Bitte fügen Sie weitere Begriffe hinzu.</string>
+    <string name="empty_group_positive">OK</string>
+    <string name="no_card_groups">Keine Kartengruppen verfügbar</string>
+    <string name="language_not_supported">Sprache wird nicht unterstützt</string>
+    <string name="tts_initialization_failed">Text-to-Speech-Initialisierung fehlgeschlagen</string>
+    <string name="tts_initialized_successfully">Text-to-Speech erfolgreich initialisiert</string>
+    <string name="question_number">Fragenummer: %d</string>
+    <string name="correct_number">Anzahl der richtigen Antworten: %d</string>
+    <string name="wrong_number">Anzahl der falschen Antworten: %d</string>
+    <string name="unknown_error">Unbekannter Fehler</string>
+    <string name="add_card">Karte hinzufügen</string>
+    <string name="term_hint">Begriff</string>
+    <string name="definition_hint">Definition</string>
+    <string name="add_button">Hinzufügen</string>
+    <string name="group_name_hint">Gruppenname</string>
+    <string name="practice">Üben</string>
+    <string name="quiz">Quiz</string>
+    <string name="welcome_text">Willkommen!</string>
+    <string name="no_card_groups_message">Klicken Sie auf die + Schaltfläche, um eine neue Kartengruppe hinzuzufügen.</string>
+    <string name="quiz_screen">Quiz-Bildschirm</string>
+    <string name="results">Ergebnisse:</string>
+    <string name="question_count">Anzahl der Fragen:</string>
+    <string name="correct_count">Anzahl der richtigen Antworten:</string>
+    <string name="wrong_count">Anzahl der falschen Antworten:</string>
+    <string name="return_to_main">Zurück zum Hauptmenü</string>
+    <string name="term">Begriff</string>
+    <string name="definition">Definition</string>
+    <string name="group_name">Gruppenname</string>
+</resources>

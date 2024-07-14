@@ -119,16 +119,16 @@ class QuizFragment : Fragment() {
     private fun showResults() {
         binding.cardContainer.visibility = View.GONE
         binding.resultCardView.visibility = View.VISIBLE
-        binding.questionNumberText.text = "Soru Sayısı: $currentQuestionIndex"
-        binding.correctNumberText.text = "Doğru Sayısı: $correctAnswers"
-        binding.wrongNumberText.text = "Yanlış Sayısı: $wrongAnswers"
+        binding.questionNumberText.text = getString(R.string.question_number, currentQuestionIndex)
+        binding.correctNumberText.text = getString(R.string.correct_number, correctAnswers)
+        binding.wrongNumberText.text = getString(R.string.wrong_number, wrongAnswers)
     }
 
     // Yeterli terim olmadığında uyarı dialogunu gösterir
     private fun showInsufficientTermsDialog() {
         AlertDialog.Builder(requireContext())
-            .setMessage("The group must contain more than 5 terms to start the quiz. Please add more terms.")
-            .setPositiveButton("OK") { dialog, _ ->
+            .setMessage(getString(R.string.insufficient_terms_message))
+            .setPositiveButton(getString(R.string.empty_group_positive)) { dialog, _ ->
                 dialog.dismiss()
                 findNavController().navigateUp()
             }

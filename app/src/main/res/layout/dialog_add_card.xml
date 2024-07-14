@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-medium"
-        android:text="Kart Ekle:"
+        android:text="@string/add_card"
         android:textColor="@color/secondary_color"
         android:textSize="20sp" />
 
@@ -21,14 +21,14 @@
         android:id="@+id/termEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Terim" />
+        android:hint="@string/term_hint" />
 
     <EditText
         android:id="@+id/definitionEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:hint="Tanım" />
+        android:hint="@string/definition_hint" />
 
     <Button
         android:id="@+id/addButton"
@@ -36,6 +36,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:backgroundTint="@color/secondary_color"
-        android:text="Ekle"
+        android:text="@string/add_button"
         app:cornerRadius="7dp" />
 </LinearLayout>

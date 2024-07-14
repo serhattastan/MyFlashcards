@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">My Flashcards</string>
+
+    <string name="sign_in">Log ind</string>
+    <string name="sign_up">Tilmeld</string>
+    <string name="email_hint">E-mail</string>
+    <string name="password_hint">Adgangskode</string>
+    <string name="confirm_password_hint">Bekræft adgangskode</string>
+    <string name="dont_have_account">Har du ikke en konto? Tilmeld dig</string>
+    <string name="already_have_account">Har du allerede en konto? Log ind</string>
+    <string name="email_required">E-mail er påkrævet</string>
+    <string name="valid_email_required">Gyldig e-mail er påkrævet</string>
+    <string name="password_required">Adgangskode er påkrævet</string>
+    <string name="password_length_error">Adgangskoden skal være mindst 6 tegn</string>
+    <string name="password_mismatch">Adgangskoderne stemmer ikke overens</string>
+    <string name="google_sign_in_failed">Google-login mislykkedes: %1$s</string>
+    <string name="continue_as_guest">Fortsæt som gæst</string>
+
+    <!-- Nytilføjede strenge -->
+    <string name="delete_confirmation_message">Er du sikker på, at du vil slette denne gruppe og alle dens kort?</string>
+    <string name="delete_confirmation_positive">Ja</string>
+    <string name="delete_confirmation_negative">Nej</string>
+    <string name="empty_group_message">Gruppen er tom. Tilføj venligst nogle termer.</string>
+    <string name="insufficient_terms_message">Gruppen skal indeholde mere end 5 termer for at starte quizzen. Tilføj venligst flere termer.</string>
+    <string name="empty_group_positive">OK</string>
+    <string name="no_card_groups">Ingen kortgrupper tilgængelige</string>
+    <string name="language_not_supported">Sprog understøttes ikke</string>
+    <string name="tts_initialization_failed">TextToSpeech-initialisering mislykkedes</string>
+    <string name="tts_initialized_successfully">TextToSpeech blev initialiseret med succes</string>
+    <string name="question_number">Spørgsmålsnummer: %d</string>
+    <string name="correct_number">Antal korrekte svar: %d</string>
+    <string name="wrong_number">Antal forkerte svar: %d</string>
+    <string name="unknown_error">Ukendt fejl</string>
+    <string name="add_card">Tilføj kort</string>
+    <string name="term_hint">Term</string>
+    <string name="definition_hint">Definition</string>
+    <string name="add_button">Tilføj</string>
+    <string name="group_name_hint">Gruppens navn</string>
+    <string name="practice">Øve</string>
+    <string name="quiz">Quiz</string>
+    <string name="welcome_text">Velkommen!</string>
+    <string name="no_card_groups_message">Klik på + knappen for at tilføje en ny kortgruppe.</string>
+    <string name="quiz_screen">Quiz-skærm</string>
+    <string name="results">Resultater:</string>
+    <string name="question_count">Antal spørgsmål:</string>
+    <string name="correct_count">Antal korrekte svar:</string>
+    <string name="wrong_count">Antal forkerte svar:</string>
+    <string name="return_to_main">Vend tilbage til hovedmenuen</string>
+    <string name="term">Term</string>
+    <string name="definition">Definition</string>
+    <string name="group_name">Gruppens navn</string>
+</resources>

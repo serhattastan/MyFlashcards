@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">My Flashcards</string>
+
+    <string name="sign_in">Se connecter</string>
+    <string name="sign_up">S\'inscrire</string>
+    <string name="email_hint">E-mail</string>
+    <string name="password_hint">Mot de passe</string>
+    <string name="confirm_password_hint">Confirmer le mot de passe</string>
+    <string name="dont_have_account">Vous n\'avez pas de compte ? Inscrivez-vous</string>
+    <string name="already_have_account">Vous avez déjà un compte ? Connectez-vous</string>
+    <string name="email_required">E-mail requis</string>
+    <string name="valid_email_required">E-mail valide requis</string>
+    <string name="password_required">Mot de passe requis</string>
+    <string name="password_length_error">Le mot de passe doit comporter au moins 6 caractères</string>
+    <string name="password_mismatch">Les mots de passe ne correspondent pas</string>
+    <string name="google_sign_in_failed">Échec de la connexion Google : %1$s</string>
+    <string name="continue_as_guest">Continuer en tant qu\'invité</string>
+
+    <!-- Nouvelles chaînes ajoutées -->
+    <string name="delete_confirmation_message">Êtes-vous sûr de vouloir supprimer ce groupe et toutes ses cartes ?</string>
+    <string name="delete_confirmation_positive">Oui</string>
+    <string name="delete_confirmation_negative">Non</string>
+    <string name="empty_group_message">Le groupe est vide. Veuillez ajouter des termes.</string>
+    <string name="insufficient_terms_message">Le groupe doit contenir plus de 5 termes pour commencer le quiz. Veuillez ajouter plus de termes.</string>
+    <string name="empty_group_positive">OK</string>
+    <string name="no_card_groups">Aucun groupe de cartes disponible</string>
+    <string name="language_not_supported">Langue non prise en charge</string>
+    <string name="tts_initialization_failed">Échec de l\'initialisation de la synthèse vocale</string>
+    <string name="tts_initialized_successfully">Synthèse vocale initialisée avec succès</string>
+    <string name="question_number">Numéro de la question : %d</string>
+    <string name="correct_number">Nombre de bonnes réponses : %d</string>
+    <string name="wrong_number">Nombre de mauvaises réponses : %d</string>
+    <string name="unknown_error">Erreur inconnue</string>
+    <string name="add_card">Ajouter une carte</string>
+    <string name="term_hint">Terme</string>
+    <string name="definition_hint">Définition</string>
+    <string name="add_button">Ajouter</string>
+    <string name="group_name_hint">Nom du groupe</string>
+    <string name="practice">Pratique</string>
+    <string name="quiz">Quiz</string>
+    <string name="welcome_text">Bienvenue !</string>
+    <string name="no_card_groups_message">Cliquez sur le bouton + pour ajouter un nouveau groupe de cartes.</string>
+    <string name="quiz_screen">Écran de quiz</string>
+    <string name="results">Résultats :</string>
+    <string name="question_count">Nombre de questions :</string>
+    <string name="correct_count">Nombre de bonnes réponses :</string>
+    <string name="wrong_count">Nombre de mauvaises réponses :</string>
+    <string name="return_to_main">Retourner au menu principal</string>
+    <string name="term">Terme</string>
+    <string name="definition">Définition</string>
+    <string name="group_name">Nom du groupe</string>
+</resources>

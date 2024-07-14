@@ -28,7 +28,7 @@
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_alternates_medium"
-                android:text="Term"
+                android:text="@string/term"
                 android:textColor="@color/secondary_color"
                 android:textSize="16sp" />
 
@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/montserrat_alternates"
-                android:text="Definition"
+                android:text="@string/definition"
                 android:textColor="@color/secondary_color"
                 android:textSize="14sp" />
 

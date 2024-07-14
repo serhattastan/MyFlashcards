@@ -18,4 +18,38 @@
     <string name="password_mismatch">Passwords do not match</string>
     <string name="google_sign_in_failed">Google sign in failed: %1$s</string>
     <string name="continue_as_guest">Continue as a Guest</string>
+
+    <!-- Newly added strings -->
+    <string name="delete_confirmation_message">Are you sure you want to delete this group and all its cards?</string>
+    <string name="delete_confirmation_positive">Yes</string>
+    <string name="delete_confirmation_negative">No</string>
+    <string name="empty_group_message">The group is empty. Please add some terms.</string>
+    <string name="insufficient_terms_message">The group must contain more than 5 terms to start the quiz. Please add more terms.</string>
+    <string name="empty_group_positive">OK</string>
+    <string name="no_card_groups">No card groups available</string>
+    <string name="language_not_supported">Language is not supported</string>
+    <string name="tts_initialization_failed">TextToSpeech initialization failed</string>
+    <string name="tts_initialized_successfully">TextToSpeech initialized successfully</string>
+    <string name="question_number">Question Number: %d</string>
+    <string name="correct_number">Correct Answers: %d</string>
+    <string name="wrong_number">Wrong Answers: %d</string>
+    <string name="unknown_error">Unknown error</string>
+    <string name="add_card">Add Card</string>
+    <string name="term_hint">Term</string>
+    <string name="definition_hint">Definition</string>
+    <string name="add_button">Add</string>
+    <string name="group_name_hint">Group Name</string>
+    <string name="practice">Practice</string>
+    <string name="quiz">Quiz</string>
+    <string name="welcome_text">Welcome!</string>
+    <string name="no_card_groups_message">Click the + button to add a new card group.</string>
+    <string name="quiz_screen">Quiz Screen</string>
+    <string name="results">Results:</string>
+    <string name="question_count">Question Count:</string>
+    <string name="correct_count">Correct Count:</string>
+    <string name="wrong_count">Wrong Count:</string>
+    <string name="return_to_main">Return to Main Menu</string>
+    <string name="term">Term</string>
+    <string name="definition">Definition</string>
+    <string name="group_name">Group Name</string>
 </resources>
