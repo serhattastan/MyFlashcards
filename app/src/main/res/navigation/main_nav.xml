@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,7 +7,7 @@
     <fragment
         android:id="@+id/authFragment"
         android:name="com.cloffygames.myflashcards.ui.view.auth.AuthFragment"
-        android:label="AuthFragment" >
+        android:label="AuthFragment">
         <action
             android:id="@+id/action_authFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
@@ -17,7 +16,7 @@
         android:id="@+id/homeFragment"
         android:name="com.cloffygames.myflashcards.ui.view.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_groupDetailFragment"
             app:destination="@id/groupDetailFragment" />
@@ -26,7 +25,26 @@
         android:id="@+id/groupDetailFragment"
         android:name="com.cloffygames.myflashcards.ui.view.GroupDetailFragment"
         android:label="fragment_group_detail"
-        tools:layout="@layout/fragment_group_detail" >
+        tools:layout="@layout/fragment_group_detail">
+        <argument
+            android:name="groupId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_groupDetailFragment_to_practiseFragment"
+            app:destination="@id/practiseFragment">
+            <argument
+                android:name="groupId"
+                app:argType="integer" />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/practiseFragment"
+        android:name="com.cloffygames.myflashcards.ui.view.PractiseFragment"
+        android:label="fragment_practise"
+        tools:layout="@layout/fragment_practise">
+        <action
+            android:id="@+id/action_practiseFragment_to_groupDetailFragment"
+            app:destination="@id/groupDetailFragment" />
         <argument
             android:name="groupId"
             app:argType="integer" />

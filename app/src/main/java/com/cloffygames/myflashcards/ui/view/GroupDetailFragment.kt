@@ -1,6 +1,7 @@
 package com.cloffygames.myflashcards.ui.view
 
 import android.os.Bundle
+import android.speech.tts.TextToSpeech
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +14,6 @@ import com.cloffygames.myflashcards.databinding.FragmentGroupDetailBinding
 import com.cloffygames.myflashcards.ui.adapter.CardAdapter
 import com.cloffygames.myflashcards.ui.viewmodel.GroupDetailViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import android.speech.tts.TextToSpeech
 import android.app.AlertDialog
 import android.widget.Button
 import android.widget.EditText
@@ -40,6 +40,7 @@ class GroupDetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        // FragmentGroupDetailBinding'i inflate eder ve _binding değişkenine atar
         _binding = FragmentGroupDetailBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -54,6 +55,7 @@ class GroupDetailFragment : Fragment() {
             }
         }
 
+        // Grup verilerini yükler ve RecyclerView'a bağlar
         loadGroupData()
 
         // addCardButton'a tıklama olayını dinler
@@ -65,9 +67,22 @@ class GroupDetailFragment : Fragment() {
         binding.trashButton.setOnClickListener {
             showDeleteConfirmationDialog()
         }
+
+        // practiseButton'a tıklama olayını dinler ve grubu boş olup olmadığını kontrol eder
+        binding.practiseButton.setOnClickListener {
+            CoroutineScope(Dispatchers.Main).launch {
+                val cards = viewModel.loadCards(args.groupId)
+                if (cards.isNotEmpty()) {
+                    val action = GroupDetailFragmentDirections.actionGroupDetailFragmentToPractiseFragment(args.groupId)
+                    findNavController().navigate(action)
+                } else {
+                    showEmptyGroupDialog()
+                }
+            }
+        }
     }
 
-    // Grup verilerini yükler ve RecyclerView'a bağlar
+    // Grup verilerini ve kartları yükler
     private fun loadGroupData() {
         CoroutineScope(Dispatchers.Main).launch {
             val cardGroup = viewModel.loadCardGroup(args.groupId)
@@ -129,10 +144,20 @@ class GroupDetailFragment : Fragment() {
             .show()
     }
 
+    // Grup boş olduğunda uyarı dialogunu gösterir
+    private fun showEmptyGroupDialog() {
+        AlertDialog.Builder(requireContext())
+            .setMessage("The group is empty. Please add some terms.")
+            .setPositiveButton("OK") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .create()
+            .show()
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-        // TextToSpeech (TTS) motorunu kapatır
         tts.shutdown()
     }
 }
