@@ -36,6 +36,13 @@
                 android:name="groupId"
                 app:argType="integer" />
         </action>
+        <action
+            android:id="@+id/action_groupDetailFragment_to_quizFragment"
+            app:destination="@id/quizFragment">
+            <argument
+                android:name="groupId"
+                app:argType="integer" />
+        </action>
     </fragment>
     <fragment
         android:id="@+id/practiseFragment"
@@ -48,5 +55,20 @@
         <argument
             android:name="groupId"
             app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/quizFragment"
+        android:name="com.cloffygames.myflashcards.ui.view.QuizFragment"
+        android:label="fragment_quiz"
+        tools:layout="@layout/fragment_quiz">
+        <argument
+            android:name="groupId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_quizFragment_to_groupDetailFragment"
+            app:destination="@id/groupDetailFragment" />
+        <action
+            android:id="@+id/action_quizFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
 </navigation>

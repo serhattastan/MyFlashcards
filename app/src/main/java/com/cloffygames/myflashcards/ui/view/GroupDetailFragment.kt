@@ -80,6 +80,19 @@ class GroupDetailFragment : Fragment() {
                 }
             }
         }
+
+        // quizButton'a tıklama olayını dinler ve grup içindeki terim sayısını kontrol eder
+        binding.quizButton.setOnClickListener {
+            CoroutineScope(Dispatchers.Main).launch {
+                val cards = viewModel.loadCards(args.groupId)
+                if (cards.size > 5) {
+                    val action = GroupDetailFragmentDirections.actionGroupDetailFragmentToQuizFragment(args.groupId)
+                    findNavController().navigate(action)
+                } else {
+                    showInsufficientTermsDialog()
+                }
+            }
+        }
     }
 
     // Grup verilerini ve kartları yükler
@@ -148,6 +161,17 @@ class GroupDetailFragment : Fragment() {
     private fun showEmptyGroupDialog() {
         AlertDialog.Builder(requireContext())
             .setMessage("The group is empty. Please add some terms.")
+            .setPositiveButton("OK") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .create()
+            .show()
+    }
+
+    // Grup içindeki terim sayısı yetersiz olduğunda uyarı dialogunu gösterir
+    private fun showInsufficientTermsDialog() {
+        AlertDialog.Builder(requireContext())
+            .setMessage("The group must contain more than 5 terms to start the quiz. Please add more terms.")
             .setPositiveButton("OK") { dialog, _ ->
                 dialog.dismiss()
             }
