@@ -17,4 +17,9 @@ class CardRepository @Inject constructor(
     suspend fun getCardsByGroupId(groupId: Int): List<Card> {
         return cardDao.getCardsByGroupId(groupId)
     }
+
+    // Belirtilen groupId'ye sahip tüm Card nesnelerini veritabanından siler
+    suspend fun deleteCardsByGroupId(groupId: Int) {
+        cardDao.deleteCardsByGroupId(groupId)
+    }
 }

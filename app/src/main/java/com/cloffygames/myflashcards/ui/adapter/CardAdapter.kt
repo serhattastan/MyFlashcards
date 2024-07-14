@@ -1,14 +1,16 @@
 package com.cloffygames.myflashcards.ui.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.cloffygames.myflashcards.databinding.ItemCardBinding
 import com.cloffygames.myflashcards.data.model.Card
 
-// CardAdapter sınıfı, RecyclerView.Adapter sınıfını genişletir ve flashcard'ları listeler
-class CardAdapter(private val cards: List<Card>) : RecyclerView.Adapter<CardAdapter.CardViewHolder>() {
+// CardAdapter, RecyclerView.Adapter sınıfını genişletir ve flashcard'ları listeler
+class CardAdapter(
+    private val cards: List<Card>,
+    private val onSoundIconClicked: (String) -> Unit
+) : RecyclerView.Adapter<CardAdapter.CardViewHolder>() {
 
     // CardViewHolder, RecyclerView.ViewHolder sınıfını genişletir ve item_card layout'unun verilerini bağlar
     inner class CardViewHolder(private val binding: ItemCardBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -16,6 +18,10 @@ class CardAdapter(private val cards: List<Card>) : RecyclerView.Adapter<CardAdap
         fun bind(card: Card) {
             binding.termTextView.text = card.term
             binding.definitionTextView.text = card.definition
+            // Sound icon click listener'ı tanımlar
+            binding.soundIcon.setOnClickListener {
+                onSoundIconClicked(card.term)
+            }
         }
     }
 

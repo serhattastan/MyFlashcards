@@ -6,10 +6,17 @@
     android:padding="16dp">
 
     <EditText
-        android:id="@+id/groupNameEditText"
+        android:id="@+id/termEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Grup Adı" />
+        android:hint="Terim" />
+
+    <EditText
+        android:id="@+id/definitionEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Tanım"
+        android:layout_marginTop="8dp" />
 
     <Button
         android:id="@+id/addButton"

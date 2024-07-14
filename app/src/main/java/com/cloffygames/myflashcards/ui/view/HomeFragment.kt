@@ -1,30 +1,39 @@
 package com.cloffygames.myflashcards.ui.view
 
 import android.os.Bundle
+import android.speech.tts.TextToSpeech
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.cloffygames.myflashcards.databinding.FragmentHomeBinding
 import com.cloffygames.myflashcards.ui.adapter.CardGroupAdapter
 import com.cloffygames.myflashcards.ui.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import android.app.AlertDialog
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import com.cloffygames.myflashcards.R
 import com.cloffygames.myflashcards.data.model.CardGroup
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import java.util.Locale
 
 @AndroidEntryPoint // Bu anotasyon, Dagger Hilt'in bu sınıfa bağımlılık enjeksiyonu yapacağını belirtir
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), TextToSpeech.OnInitListener {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
     // HomeViewModel'i, Hilt'in viewModels() yardımcı fonksiyonu ile başlatır
     private val viewModel: HomeViewModel by viewModels()
+
+    private lateinit var tts: TextToSpeech
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,17 +47,35 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // ViewModel'deki cardGroupsWithCards LiveData'sını gözlemler
-        viewModel.cardGroupsWithCards.observe(viewLifecycleOwner) { cardGroupsWithCards ->
-            // CardGroupAdapter'ı oluşturur ve RecyclerView'a bağlar
-            val adapter = CardGroupAdapter(cardGroupsWithCards)
-            binding.recyclerView.layoutManager = LinearLayoutManager(context)
-            binding.recyclerView.adapter = adapter
-        }
+        // TextToSpeech (TTS) motorunu başlatır
+        tts = TextToSpeech(context, this)
 
         // addCardGroupButton'a tıklama olayını dinler
         binding.addCardGroupButton.setOnClickListener {
             showAddCardGroupDialog()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // Fragment yeniden görünür olduğunda kart gruplarını getirir ve gösterir
+        fetchAndDisplayCardGroups()
+    }
+
+    // Kart gruplarını getirir ve RecyclerView'a bağlar
+    private fun fetchAndDisplayCardGroups() {
+        CoroutineScope(Dispatchers.Main).launch {
+            val cardGroupsWithCards = viewModel.fetchCardGroupsWithCards()
+            val adapter = CardGroupAdapter(cardGroupsWithCards, { cardGroup ->
+                // Grup detaylarına gitmek için navigasyon işlemini başlatır
+                val action = HomeFragmentDirections.actionHomeFragmentToGroupDetailFragment(cardGroup.cardGroup.groupId)
+                findNavController().navigate(action)
+            }, { term ->
+                // TTS ile terimi okur
+                tts.speak(term, TextToSpeech.QUEUE_FLUSH, null, null)
+            })
+            binding.recyclerView.layoutManager = LinearLayoutManager(context)
+            binding.recyclerView.adapter = adapter
         }
     }
 
@@ -65,18 +92,37 @@ class HomeFragment : Fragment() {
         addButton.setOnClickListener {
             val groupName = groupNameEditText.text.toString()
             if (groupName.isNotEmpty()) {
-                // ViewModel'e yeni bir kart grubu ekler
-                viewModel.addCardGroup(CardGroup(groupName = groupName))
-                dialog.dismiss()
+                CoroutineScope(Dispatchers.Main).launch {
+                    viewModel.addCardGroup(CardGroup(groupName = groupName))
+                    fetchAndDisplayCardGroups()
+                    dialog.dismiss()
+                }
             }
         }
 
         dialog.show()
     }
 
+    // TTS motoru başlatıldığında çağrılır
+    override fun onInit(status: Int) {
+        if (status == TextToSpeech.SUCCESS) {
+            val result = tts.setLanguage(Locale.getDefault())
+            if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                Log.e("TTS", "Language is not supported")
+            } else {
+                Log.d("TTS", "TextToSpeech initialized successfully")
+            }
+        } else {
+            Log.e("TTS", "Initialization failed")
+        }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
-        // _binding'i null yaparak bellek sızıntılarını önler
+        if (this::tts.isInitialized) {
+            tts.stop()
+            tts.shutdown()
+        }
         _binding = null
     }
 }

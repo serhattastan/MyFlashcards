@@ -1,9 +1,9 @@
 package com.cloffygames.myflashcards.data
 
+import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import android.content.Context
 import com.cloffygames.myflashcards.data.local.CardDao
 import com.cloffygames.myflashcards.data.local.CardGroupDao
 import com.cloffygames.myflashcards.data.model.Card
@@ -28,7 +28,9 @@ abstract class AppDatabase : RoomDatabase() {
                     context.applicationContext,
                     AppDatabase::class.java,
                     "flashcards_database" // Veritabanı adı
-                ).build()
+                )
+                    .fallbackToDestructiveMigration() // Yıkıcı geçişlere izin verir
+                    .build()
                 INSTANCE = instance
                 instance
             }

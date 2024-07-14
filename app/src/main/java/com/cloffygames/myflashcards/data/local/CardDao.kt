@@ -12,7 +12,11 @@ interface CardDao {
     @Insert
     suspend fun insertCard(card: Card)
 
-    // Belirtilen groupId'ye sahip tüm Card nesnelerini döner
+    // Belirtilen groupId'ye sahip tüm Card nesnelerini veritabanından alır
     @Query("SELECT * FROM Cards WHERE groupId = :groupId")
     suspend fun getCardsByGroupId(groupId: Int): List<Card>
+
+    // Belirtilen groupId'ye sahip tüm Card nesnelerini veritabanından siler
+    @Query("DELETE FROM Cards WHERE groupId = :groupId")
+    suspend fun deleteCardsByGroupId(groupId: Int)
 }

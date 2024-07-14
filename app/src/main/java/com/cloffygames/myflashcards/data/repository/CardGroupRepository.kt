@@ -17,4 +17,14 @@ class CardGroupRepository @Inject constructor(
     suspend fun getAllCardGroups(): List<CardGroup> {
         return cardGroupDao.getAllCardGroups()
     }
+
+    // Belirtilen groupId'ye sahip CardGroup nesnesini veritabanından alır
+    suspend fun getCardGroupById(groupId: Int): CardGroup? {
+        return cardGroupDao.getCardGroupById(groupId)
+    }
+
+    // Belirtilen CardGroup nesnesini veritabanından siler
+    suspend fun deleteCardGroup(cardGroup: CardGroup) {
+        cardGroupDao.deleteCardGroup(cardGroup)
+    }
 }
