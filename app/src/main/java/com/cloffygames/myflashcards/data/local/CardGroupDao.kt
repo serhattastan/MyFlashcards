@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Update
 import com.cloffygames.myflashcards.data.model.CardGroup
 
 @Dao // Bu anotasyon, bu arayüzün bir Room DAO (Data Access Object) olduğunu belirtir
@@ -24,4 +25,8 @@ interface CardGroupDao {
     // Belirtilen CardGroup nesnesini veritabanından siler
     @Delete
     suspend fun deleteCardGroup(cardGroup: CardGroup)
+
+    // Belirtilen CardGroup nesnesini veritabanındaki verileri günceller
+    @Update
+    suspend fun updateCardGroup(cardGroup: CardGroup)
 }

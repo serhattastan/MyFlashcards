@@ -19,6 +19,7 @@ import android.widget.Button
 import android.widget.EditText
 import com.cloffygames.myflashcards.R
 import com.cloffygames.myflashcards.data.model.Card
+import com.cloffygames.myflashcards.data.model.CardGroup
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -58,17 +59,17 @@ class GroupDetailFragment : Fragment() {
         // Grup verilerini yükler ve RecyclerView'a bağlar
         loadGroupData()
 
-        // addCardButton'a tıklama olayını dinler
+        // Kart ekleme butonuna tıklama olayını dinler
         binding.addCardButton.setOnClickListener {
             showAddCardDialog()
         }
 
-        // trashButton'a tıklama olayını dinler
+        // Silme butonuna tıklama olayını dinler
         binding.trashButton.setOnClickListener {
             showDeleteConfirmationDialog()
         }
 
-        // practiseButton'a tıklama olayını dinler ve grubu boş olup olmadığını kontrol eder
+        // Pratik butonuna tıklama olayını dinler
         binding.practiseButton.setOnClickListener {
             CoroutineScope(Dispatchers.Main).launch {
                 val cards = viewModel.loadCards(args.groupId)
@@ -81,7 +82,7 @@ class GroupDetailFragment : Fragment() {
             }
         }
 
-        // quizButton'a tıklama olayını dinler ve grup içindeki terim sayısını kontrol eder
+        // Quiz butonuna tıklama olayını dinler
         binding.quizButton.setOnClickListener {
             CoroutineScope(Dispatchers.Main).launch {
                 val cards = viewModel.loadCards(args.groupId)
@@ -90,6 +91,16 @@ class GroupDetailFragment : Fragment() {
                     findNavController().navigate(action)
                 } else {
                     showInsufficientTermsDialog()
+                }
+            }
+        }
+
+        // Grup adı tıklama olayını dinler ve grup adını düzenleme dialogunu gösterir
+        binding.groupNameText.setOnClickListener {
+            CoroutineScope(Dispatchers.Main).launch {
+                val cardGroup = viewModel.loadCardGroup(args.groupId)
+                cardGroup?.let {
+                    showEditGroupNameDialog(it)
                 }
             }
         }
@@ -103,15 +114,74 @@ class GroupDetailFragment : Fragment() {
 
             binding.groupNameText.text = cardGroup?.groupName
 
-            val adapter = CardAdapter(cards) { term ->
+            val adapter = CardAdapter(cards, { term ->
                 tts.speak(term, TextToSpeech.QUEUE_FLUSH, null, null)
+            }) { card ->
+                showEditCardDialog(card)
             }
             binding.recyclerView.layoutManager = GridLayoutManager(context, 2)
             binding.recyclerView.adapter = adapter
         }
     }
 
-    // Yeni bir kart eklemek için bir dialog gösterir
+    // Grup adını düzenlemek için dialog gösterir
+    private fun showEditGroupNameDialog(cardGroup: CardGroup) {
+        val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_edit_group_name, null)
+        val groupNameEditText = dialogView.findViewById<EditText>(R.id.groupNameEditText)
+        val saveButton = dialogView.findViewById<Button>(R.id.saveButton)
+
+        groupNameEditText.setText(cardGroup.groupName)
+
+        val dialog = AlertDialog.Builder(requireContext())
+            .setView(dialogView)
+            .create()
+
+        saveButton.setOnClickListener {
+            val newGroupName = groupNameEditText.text.toString()
+            if (newGroupName.isNotEmpty()) {
+                CoroutineScope(Dispatchers.Main).launch {
+                    val updatedCardGroup = cardGroup.copy(groupName = newGroupName)
+                    viewModel.updateCardGroup(updatedCardGroup)
+                    loadGroupData()
+                    dialog.dismiss()
+                }
+            }
+        }
+
+        dialog.show()
+    }
+
+    // Kartı düzenlemek için dialog gösterir
+    private fun showEditCardDialog(card: Card) {
+        val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_edit_card, null)
+        val termEditText = dialogView.findViewById<EditText>(R.id.termEditText)
+        val definitionEditText = dialogView.findViewById<EditText>(R.id.definitionEditText)
+        val saveButton = dialogView.findViewById<Button>(R.id.saveButton)
+
+        termEditText.setText(card.term)
+        definitionEditText.setText(card.definition)
+
+        val dialog = AlertDialog.Builder(requireContext())
+            .setView(dialogView)
+            .create()
+
+        saveButton.setOnClickListener {
+            val newTerm = termEditText.text.toString()
+            val newDefinition = definitionEditText.text.toString()
+            if (newTerm.isNotEmpty() && newDefinition.isNotEmpty()) {
+                CoroutineScope(Dispatchers.Main).launch {
+                    val updatedCard = card.copy(term = newTerm, definition = newDefinition)
+                    viewModel.updateCard(updatedCard)
+                    loadGroupData()
+                    dialog.dismiss()
+                }
+            }
+        }
+
+        dialog.show()
+    }
+
+    // Yeni bir kart eklemek için dialog gösterir
     private fun showAddCardDialog() {
         val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_add_card, null)
         val termEditText = dialogView.findViewById<EditText>(R.id.termEditText)
@@ -168,7 +238,7 @@ class GroupDetailFragment : Fragment() {
             .show()
     }
 
-    // Grup içindeki terim sayısı yetersiz olduğunda uyarı dialogunu gösterir
+    // Yetersiz terim olduğunda uyarı dialogunu gösterir
     private fun showInsufficientTermsDialog() {
         AlertDialog.Builder(requireContext())
             .setMessage(getString(R.string.insufficient_terms_message))
@@ -179,6 +249,7 @@ class GroupDetailFragment : Fragment() {
             .show()
     }
 
+    // Görünüm yok edilirken çağrılır, TTS motorunu kapatır
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

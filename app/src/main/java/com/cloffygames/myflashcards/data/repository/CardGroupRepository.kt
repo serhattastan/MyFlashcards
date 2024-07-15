@@ -27,4 +27,9 @@ class CardGroupRepository @Inject constructor(
     suspend fun deleteCardGroup(cardGroup: CardGroup) {
         cardGroupDao.deleteCardGroup(cardGroup)
     }
+
+    // Belirtilen CardGroup nesnesini veritabanından günceller
+    suspend fun updateCardGroup(cardGroup: CardGroup) {
+        cardGroupDao.updateCardGroup(cardGroup)
+    }
 }

@@ -53,4 +53,6 @@
     <string name="exit_confirmation_message">Uygulamadan çıkmak istediğinize emin misiniz?</string>
     <string name="yes">Evet</string>
     <string name="no">Hayır</string>
+    <string name="save_button">Kaydet</string>
+
 </resources>

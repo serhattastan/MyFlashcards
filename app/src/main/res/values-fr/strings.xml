@@ -53,4 +53,6 @@
     <string name="exit_confirmation_message">Voulez-vous vraiment quitter l\'application?</string>
     <string name="yes">Oui</string>
     <string name="no">Non</string>
+    <string name="save_button">Enregistrer</string>
+
 </resources>

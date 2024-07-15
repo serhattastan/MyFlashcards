@@ -53,4 +53,6 @@
     <string name="exit_confirmation_message">Möchten Sie die App wirklich beenden?</string>
     <string name="yes">Ja</string>
     <string name="no">Nein</string>
+    <string name="save_button">Speichern</string>
+
 </resources>

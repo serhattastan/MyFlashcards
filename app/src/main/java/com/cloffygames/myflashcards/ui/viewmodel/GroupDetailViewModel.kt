@@ -48,4 +48,18 @@ class GroupDetailViewModel @Inject constructor(
             cardRepository.insertCard(card)
         }
     }
+
+    // Mevcut bir Card nesnesini günceller
+    suspend fun updateCard(card: Card) {
+        withContext(Dispatchers.IO) {
+            cardRepository.updateCard(card)
+        }
+    }
+
+    // Mevcut bir CardGroup nesnesini günceller
+    suspend fun updateCardGroup(cardGroup: CardGroup) {
+        withContext(Dispatchers.IO) {
+            cardGroupRepository.updateCardGroup(cardGroup)
+        }
+    }
 }

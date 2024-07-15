@@ -7,23 +7,30 @@ import androidx.recyclerview.widget.RecyclerView
 import com.cloffygames.myflashcards.databinding.ItemCardGroupBinding
 import com.cloffygames.myflashcards.ui.viewmodel.CardGroupWithCards
 
-// CardGroupAdapter, RecyclerView.Adapter sınıfını genişletir ve kart gruplarını listeler
 class CardGroupAdapter(
     private val cardGroupsWithCards: List<CardGroupWithCards>,
     private val onItemClicked: (CardGroupWithCards) -> Unit,
-    private val onSoundIconClicked: (String) -> Unit
+    private val onSoundIconClicked: (String) -> Unit,
+    private val onGroupNameClicked: (CardGroupWithCards) -> Unit // Grup adı tıklama dinleyicisi
 ) : RecyclerView.Adapter<CardGroupAdapter.CardGroupViewHolder>() {
 
-    // CardGroupViewHolder, RecyclerView.ViewHolder sınıfını genişletir ve item_card_group layout'unun verilerini bağlar
+    // ViewHolder sınıfı, her bir kart grubu öğesi için arayüz bileşenlerini tutar
     inner class CardGroupViewHolder(private val binding: ItemCardGroupBinding) : RecyclerView.ViewHolder(binding.root) {
-        // bind metodu, CardGroupWithCards modelinden gelen verileri view'lara bağlar
+        // Kart grubu öğesini arayüz bileşenlerine bağlar
         fun bind(cardGroupWithCards: CardGroupWithCards) {
             binding.groupNameTextView.text = cardGroupWithCards.cardGroup.groupName
 
-            // CardAdapter'ı oluşturur ve RecyclerView'a yatay olarak bağlar
-            val cardAdapter = CardAdapter(cardGroupWithCards.cards, onSoundIconClicked)
+            // İç içe kartlar için CardAdapter oluşturur
+            val cardAdapter = CardAdapter(cardGroupWithCards.cards, onSoundIconClicked) { card ->
+                onItemClicked(cardGroupWithCards)
+            }
             binding.cardsRecyclerView.layoutManager = LinearLayoutManager(binding.root.context, LinearLayoutManager.HORIZONTAL, false)
             binding.cardsRecyclerView.adapter = cardAdapter
+
+            // Grup adı tıklama olayını dinler ve onGroupNameClicked fonksiyonunu çağırır
+            binding.groupNameTextView.setOnClickListener {
+                onGroupNameClicked(cardGroupWithCards)
+            }
 
             // Grup kartının tıklama olayını dinler ve onItemClicked fonksiyonunu çağırır
             binding.root.setOnClickListener {
@@ -32,17 +39,17 @@ class CardGroupAdapter(
         }
     }
 
-    // onCreateViewHolder metodu, ViewHolder'ı oluşturur ve layout'u inflate eder
+    // ViewHolder'ı oluşturur ve ilgili arayüz bileşenlerini inflate eder
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardGroupViewHolder {
         val binding = ItemCardGroupBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return CardGroupViewHolder(binding)
     }
 
-    // onBindViewHolder metodu, ViewHolder'a verileri bağlar
+    // Verilen pozisyondaki kart grubunu ViewHolder'a bağlar
     override fun onBindViewHolder(holder: CardGroupViewHolder, position: Int) {
         holder.bind(cardGroupsWithCards[position])
     }
 
-    // getItemCount metodu, liste içerisindeki item sayısını döner
+    // Toplam kart grubu sayısını döndürür
     override fun getItemCount(): Int = cardGroupsWithCards.size
 }

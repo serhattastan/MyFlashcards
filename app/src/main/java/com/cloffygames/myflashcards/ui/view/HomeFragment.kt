@@ -47,14 +47,16 @@ class HomeFragment : Fragment(), TextToSpeech.OnInitListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         // TextToSpeech (TTS) motorunu başlatır
         tts = TextToSpeech(context, this)
-        // addCardGroupButton'a tıklama olayını dinler
+
+        // Kart grubu ekleme butonuna tıklama olayını dinler
         binding.addCardGroupButton.setOnClickListener {
             showAddCardGroupDialog()
         }
 
-        // Sistem geri tuşu basıldığında davranışı özelleştirir
+        // Geri tuşuna basıldığında çıkış onay dialogunu gösterir
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
             showExitConfirmationDialog()
         }
@@ -83,6 +85,9 @@ class HomeFragment : Fragment(), TextToSpeech.OnInitListener {
                 }, { term ->
                     // TTS ile terimi okur
                     tts.speak(term, TextToSpeech.QUEUE_FLUSH, null, null)
+                }, { cardGroup ->
+                    val action = HomeFragmentDirections.actionHomeFragmentToGroupDetailFragment(cardGroup.cardGroup.groupId)
+                    findNavController().navigate(action)
                 })
                 binding.recyclerView.layoutManager = LinearLayoutManager(context)
                 binding.recyclerView.adapter = adapter
@@ -90,7 +95,7 @@ class HomeFragment : Fragment(), TextToSpeech.OnInitListener {
         }
     }
 
-    // Yeni bir kart grubu eklemek için bir dialog gösterir
+    // Yeni bir kart grubu eklemek için dialog gösterir
     private fun showAddCardGroupDialog() {
         val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_add_card_group, null)
         val groupNameEditText = dialogView.findViewById<EditText>(R.id.groupNameEditText)
@@ -114,7 +119,7 @@ class HomeFragment : Fragment(), TextToSpeech.OnInitListener {
         dialog.show()
     }
 
-    // Uygulamayı kapatmak için onay isteyen bir dialog gösterir
+    // Çıkış onay dialogunu gösterir
     private fun showExitConfirmationDialog() {
         AlertDialog.Builder(requireContext())
             .setMessage(R.string.exit_confirmation_message)

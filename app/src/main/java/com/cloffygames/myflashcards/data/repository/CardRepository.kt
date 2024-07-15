@@ -22,4 +22,9 @@ class CardRepository @Inject constructor(
     suspend fun deleteCardsByGroupId(groupId: Int) {
         cardDao.deleteCardsByGroupId(groupId)
     }
+
+    // Belirtilen Card nesnesini veritabanından günceller
+    suspend fun updateCard(card: Card) {
+        cardDao.updateCard(card)
+    }
 }

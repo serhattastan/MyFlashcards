@@ -53,4 +53,6 @@
     <string name="exit_confirmation_message">Vil du virkelig afslutte appen?</string>
     <string name="yes">Ja</string>
     <string name="no">Nej</string>
+    <string name="save_button">Gem</string>
+
 </resources>
