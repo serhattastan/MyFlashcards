@@ -54,5 +54,11 @@
     <string name="yes">Ja</string>
     <string name="no">Nein</string>
     <string name="save_button">Speichern</string>
+    <string name="settings_title">Einstellungen</string>
+    <string name="sound_effects">Soundeffekte</string>
+    <string name="dark_mode">Dunkler Modus</string>
+    <string name="social_media_accounts">Folgen Sie uns auf Social Media</string>
+    <string name="logout_button">Abmelden</string>
+    <string name="logout_confirmation_message">Möchten Sie sich wirklich abmelden?</string>
 
 </resources>

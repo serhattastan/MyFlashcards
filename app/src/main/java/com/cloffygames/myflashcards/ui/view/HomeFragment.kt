@@ -60,6 +60,11 @@ class HomeFragment : Fragment(), TextToSpeech.OnInitListener {
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
             showExitConfirmationDialog()
         }
+
+        // Ayarlar butonuna tıklama olayını dinler ve Ayarlar fragment'ına geçiş yapar
+        binding.settingsImage.setOnClickListener {
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToSettingsFragment())
+        }
     }
 
     override fun onResume() {

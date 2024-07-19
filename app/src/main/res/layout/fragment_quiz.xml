@@ -142,7 +142,10 @@
         android:id="@+id/resultCardView"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
+        android:foregroundGravity="center"
         android:visibility="gone"
+        app:cardBackgroundColor="@color/primary_color"
+        app:cardCornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -157,6 +160,7 @@
                 android:id="@+id/resultTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="8dp"
                 android:fontFamily="@font/montserrat_alternates_semibold"
                 android:gravity="center"
                 android:text="@string/results"
@@ -198,9 +202,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:backgroundTint="@color/primary_color"
+                android:backgroundTint="@color/secondary_color"
                 android:text="@string/return_to_main"
-                android:textColor="@color/secondary_color" />
+                android:textColor="@color/primary_color" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

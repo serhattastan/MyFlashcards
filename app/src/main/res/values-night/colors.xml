@@ -14,4 +14,7 @@
     <color name="alert_color">#137547</color>
     <color name="alert_false_color">#BF0603</color>
 
+    <color name="icon_x_logo_color">#FFFFFFFF</color>
+    <color name="settings_cardview_color">#BFD7EA</color>
+
 </resources>

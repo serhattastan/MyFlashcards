@@ -54,5 +54,11 @@
     <string name="yes">Sí</string>
     <string name="no">No</string>
     <string name="save_button">Guardar</string>
+    <string name="settings_title">Ajustes</string>
+    <string name="sound_effects">Efectos de sonido</string>
+    <string name="dark_mode">Modo Oscuro</string>
+    <string name="social_media_accounts">Síguenos en las Redes Sociales</string>
+    <string name="logout_button">Cerrar sesión</string>
+    <string name="logout_confirmation_message">¿Estás seguro de que deseas cerrar sesión?</string>
 
 </resources>

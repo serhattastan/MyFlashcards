@@ -20,6 +20,9 @@
         <action
             android:id="@+id/action_homeFragment_to_groupDetailFragment"
             app:destination="@id/groupDetailFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
     </fragment>
     <fragment
         android:id="@+id/groupDetailFragment"
@@ -70,5 +73,16 @@
         <action
             android:id="@+id/action_quizFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.cloffygames.myflashcards.ui.view.SettingsFragment"
+        android:label="SettingsFragment" >
+        <action
+            android:id="@+id/action_settingsFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_authFragment"
+            app:destination="@id/authFragment" />
     </fragment>
 </navigation>

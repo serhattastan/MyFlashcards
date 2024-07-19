@@ -54,5 +54,11 @@
     <string name="yes">Ja</string>
     <string name="no">Nej</string>
     <string name="save_button">Gem</string>
+    <string name="settings_title">Indstillinger</string>
+    <string name="sound_effects">Lydeffekter</string>
+    <string name="dark_mode">Mørk Tilstand</string>
+    <string name="social_media_accounts">Følg os på Sociale Medier</string>
+    <string name="logout_button">Log ud</string>
+    <string name="logout_confirmation_message">Er du sikker på, at du vil logge ud?</string>
 
 </resources>

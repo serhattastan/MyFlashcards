@@ -5,36 +5,41 @@ import android.content.SharedPreferences
 import javax.inject.Inject
 import javax.inject.Singleton
 
-// PreferencesRepository sınıfı, singleton olarak tanımlanmış ve Dagger Hilt tarafından enjekte ediliyor
-@Singleton
+@Singleton // Bu anotasyon, bu sınıfın uygulama boyunca tek bir örneğinin kullanılmasını sağlar
 class PreferencesRepository @Inject constructor(context: Context) {
 
-    // SharedPreferences örneği oluşturuluyor
+    // SharedPreferences örneği, uygulama içindeki verileri kalıcı olarak saklamak için kullanılır
     private val sharedPreferences: SharedPreferences =
         context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
 
     companion object {
-        // SharedPreferences dosyasının adı
-        private const val PREFS_NAME = "com.cloffygames.myflashcards.PREFS"
-        // Kullanıcının oturum açma durumunu saklamak için anahtar
-        private const val PREFS_KEY_USER_LOGGED_IN = "user_logged_in"
+        private const val PREFS_NAME = "com.cloffygames.myflashcards.PREFS" // SharedPreferences dosya adı
+        private const val PREFS_KEY_USER_LOGGED_IN = "user_logged_in" // Kullanıcının giriş yapıp yapmadığını tutan anahtar
+        private const val PREFS_KEY_DARK_MODE = "dark_mode" // Karanlık mod tercihlerini tutan anahtar
     }
 
-    // Kullanıcı oturumunu kaydetme fonksiyonu
+    // Kullanıcı oturumunu kaydeder
     fun saveUserSession() {
-        // Kullanıcı oturum açma durumunu true olarak kaydeder
         sharedPreferences.edit().putBoolean(PREFS_KEY_USER_LOGGED_IN, true).apply()
     }
 
-    // Kullanıcının oturum açma durumunu kontrol etme fonksiyonu
+    // Kullanıcının giriş yapıp yapmadığını kontrol eder
     fun isUserLoggedIn(): Boolean {
-        // Kullanıcının oturum açma durumunu döner, varsayılan olarak false
         return sharedPreferences.getBoolean(PREFS_KEY_USER_LOGGED_IN, false)
     }
 
-    // Kullanıcı oturumunu temizleme fonksiyonu
+    // Kullanıcı oturumunu siler
     fun clearUserSession() {
-        // Kullanıcı oturum açma durumunu sharedPreferences'tan kaldırır
         sharedPreferences.edit().remove(PREFS_KEY_USER_LOGGED_IN).apply()
+    }
+
+    // Karanlık mod tercihlerini ayarlar
+    fun setDarkMode(enabled: Boolean) {
+        sharedPreferences.edit().putBoolean(PREFS_KEY_DARK_MODE, enabled).apply()
+    }
+
+    // Karanlık modun etkin olup olmadığını kontrol eder
+    fun isDarkModeEnabled(): Boolean {
+        return sharedPreferences.getBoolean(PREFS_KEY_DARK_MODE, false)
     }
 }
