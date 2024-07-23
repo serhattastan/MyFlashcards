@@ -71,10 +71,6 @@ Your feedback is very important to us. Please share any suggestions, complaints,
 3. Sync the project with Gradle files.
 4. Build and run the app on your device or emulator.
 
-## 📝 License
-
-Distributed under the MIT License. See `LICENSE` for more information.
-
 ## 📧 Contact
 
 Serhat Taştan - [serhattastannn@gmail.com](mailto:serhattastannn@gmail.com)
