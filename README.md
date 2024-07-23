@@ -77,6 +77,6 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## 📧 Contact
 
-Your Name - [serhattastannn@gmail.com](mailto:serhattastannn@gmail.com)
+Serhat Taştan - [serhattastannn@gmail.com](mailto:serhattastannn@gmail.com)
 
 Project Link: [https://github.com/serhattastan/MyFlashcards](https://github.com/serhattastan/MyFlashcards)
